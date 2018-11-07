@@ -9,4 +9,5 @@ iframe {
 #vodResults li img {
     float: left;
     margin-right: 1em;
+    max-height: 5em;
 }
