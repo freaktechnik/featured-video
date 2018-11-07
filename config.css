@@ -5,3 +5,8 @@ iframe {
     min-height: 360px;
     border: none;
 }
+
+#vodResults li img {
+    float: left;
+    margin-right: 1em;
+}
