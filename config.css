@@ -1,4 +1,15 @@
-/* TODO dark theme */
+:root {
+    user-select: none;
+    font-family: sans-serif;
+
+    color: #232127;
+    background-color: #ffffff;
+}
+
+.dark {
+    color: #e5e3e8;
+    background-color: #201c2b;
+}
 
 iframe {
     width: 100%;

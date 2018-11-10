@@ -110,4 +110,7 @@
             showVideo(iframe, getConfig());
         }
     });
+    twitch.onContext(function(context) {
+        document.body.className = context.theme;
+    });
 })();
