@@ -11,7 +11,7 @@
             <form>
                 <fieldset>
                     <legend>Video type</legend>
-                    <label><input type="radio" name="type" value="video" checked> Video</label>
+                    <label><input type="radio" name="type" value="video" checked> VOD</label>
                     <label><input type="radio" name="type" value="clip"> Clip</label>
                 </fieldset>
                 <fieldset>
@@ -27,7 +27,8 @@
             </details>
             <section>
                 <h2>Preview</h2>
-                <iframe id="embed" scrolling="no"></iframe>
+                <iframe id="embed" scrolling="no" class="hidden"></iframe>
+                <span id="noEmbed">No video configured</span>
             </section>
         </main>
         <script src="config.js"></script>
