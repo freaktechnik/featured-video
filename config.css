@@ -23,6 +23,62 @@ iframe {
     border: none;
 }
 
+fieldset {
+    border: none;
+    border-bottom: 1px solid #0f6c8c;
+    padding: 0.5em;
+}
+
+fieldset > legend {
+    color: #0f6c8c;
+}
+
+input {
+    border: none;
+    border-bottom: 1px solid #232127;
+    padding: 0.2em;
+}
+
+input:focus {
+    border-color: #0f6c8c;
+}
+
+input:invalid {
+    border-color: red;
+}
+
+.dark input {
+    border-color: #e5e3e8;
+}
+
+button {
+    background-color: #0f6c8c;
+    color: #e5e3e8;
+    margin-top: 0.5em;
+    padding: 0.5em;
+    border: none;
+    font-size: 1em;
+    transition: background 0.2s ease;
+}
+
+button:hover,
+button:focus {
+    background-color: #1e7c9c;
+}
+
+button:active {
+    background-color: #0a5d7d;
+}
+
+form {
+    margin-bottom: 0.5em;
+}
+
+h2 {
+    color: #0f6c8c;
+    border-bottom: 1px solid #0f6c8c;
+}
+
 #videoId {
     min-width: 300px;
 }
@@ -38,6 +94,15 @@ iframe {
     margin: 1em 0;
     height: 5em;
     cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+#vodResults > li:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.dark #vodResults > li:hover {
+    background: rgba(255, 255, 255, 0.1);
 }
 
 #vodResults > li > .wrapper {
@@ -52,4 +117,5 @@ iframe {
 
 #vodResults > li > .wrapper span {
     margin-right: 0.6em;
+    opacity: 0.9;
 }
