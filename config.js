@@ -95,7 +95,7 @@
     }
     document.querySelector("form").addEventListener("submit", function(e) {
         e.preventDefault();
-        twitch.configuration.set('broadcaster', '1.0.0', JSON.stringify(getConifg()));
+        twitch.configuration.set('broadcaster', '1.0.0', JSON.stringify(getConfig()));
     });
     document.addEventListener("input", function(e) {
         updateVideo();
@@ -123,9 +123,16 @@
                 if(config.hasOwnProperty(k)) {
                     if(k == "type") {
                         document.querySelector('input[name="type"][value="'+config[k]+'"]').checked = true;
+                        if(config[k] == 'clip') {
+                            videoId.pattern = '[A-Za-z]+';
+                            videoId.placeholder = 'ClipSlugName';
+                        }
                     }
                     else {
                         document.querySelector('input[name="'+k+'"]').value = config[k];
+                        if(k == 'videoId') {
+                            results.parentElement.open = false;
+                        }
                     }
                 }
             }
