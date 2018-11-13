@@ -8,8 +8,9 @@ body,
     margin: 0;
 }
 
-iframe {
+#player,
+#player img,
+#player video {
     width: 100%;
     height: 100%;
-    border: none;
 }

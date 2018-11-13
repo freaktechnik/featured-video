@@ -4,10 +4,14 @@
         <meta charset="utf-8">
         <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
         <script src="shared.js"></script>
+        <link rel="stylesheet" href="shared.css">
         <link rel="stylesheet" href="panel.css">
     </head>
     <body>
-        <iframe id="embed" scrolling="no"></iframe>
+        <div id="player">
+            <a target="_blank" href="" class="hidden"><img src=""></a>
+            <video controls class="hidden"></video>
+        </div>
         <script src="panel.js"></script>
     </body>
 </html>

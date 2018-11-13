@@ -29,15 +29,10 @@ body {
     background-color: #201c2b;
 }
 
-.hidden {
-    display: none;
-    visibility: hidden;
-}
-
-iframe {
-    width: 100%;
+#player,
+#player img,
+#player video {
     min-height: 360px;
-    border: none;
 }
 
 fieldset {
@@ -48,6 +43,7 @@ fieldset {
 
 fieldset > legend {
     color: #0f6c8c;
+    margin-top: 0.5em;
 }
 
 input {

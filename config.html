@@ -3,7 +3,9 @@
     <head>
         <meta charset="utf-8">
         <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
+        <script src= "https://player.twitch.tv/js/embed/v1.js" integrity="sha384-gv7ykq1yJE0OTsNG0vUsaFbLTmUxLM5lVU1aVaIHEv9umUVH+4i4WpAXOniMEvmG" crossorigin="anonymous"></script>
         <script src="shared.js"></script>
+        <link rel="stylesheet" href="shared.css">
         <link rel="stylesheet" href="config.css">
     </head>
     <body>
@@ -16,7 +18,12 @@
                 </fieldset>
                 <fieldset>
                     <label for="videoId">Video ID</label>
-                    <input type="text" name="videoId" id="videoId" pattern="v[0-9]+" placeholder="v123456789">
+                    <input type="text" name="videoId" id="videoId" pattern="[0-9]+" placeholder="123456789">
+                </fieldset>
+                <fieldset>
+                    <legend>Embed type</legend>
+                    <label><input type="radio" name="embed" value="static" checked disabled> Thumbnail with link</label>
+                    <label><input type="radio" name="embed" value="player" disabled> Video player</label>
                 </fieldset>
                 <button type="submit">Save</button>
             </form>
@@ -27,7 +34,10 @@
             </details>
             <section>
                 <h2>Preview</h2>
-                <iframe id="embed" scrolling="no" class="hidden"></iframe>
+                <div id="player">
+                    <a target="_blank" href="" class="hidden"><img src=""></a>
+                    <video controls class="hidden"></video>
+                </div>
                 <span id="noEmbed">No video configured</span>
             </section>
         </main>

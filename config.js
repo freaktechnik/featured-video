@@ -1,7 +1,7 @@
 (function() {
     "use strict";
     var twitch = window.Twitch.ext;
-    var iframe = document.getElementById("embed");
+    var iframe = document.getElementById("player");
     var inputs = document.querySelectorAll("input[name]");
     var videoId = document.querySelector('[name="videoId"]');
     var results = document.getElementById("vodResults");
@@ -25,9 +25,11 @@
     }
     function updateVideo() {
         var config = getConfig();
-        document.getElementById("noEmbed").className = config.videoId ? 'hidden' : '';
-        iframe.className = config.videoId ? '' : 'hidden';
-        showVideo(iframe, config);
+        if(config && searchVideos.clientId) {
+            document.getElementById("noEmbed").className = config.videoId ? 'hidden' : '';
+            iframe.className = config.videoId ? '' : 'hidden';
+            showVideo(iframe, config, searchVideos.clientId);
+        }
     }
     function addSuggestion(id, title, thumbnail, viewCount, duration) {
         var root = document.createElement("li");
@@ -88,7 +90,7 @@
                 return res.json();
             }).then((result) => {
                 for(const vod of result.data) {
-                    addSuggestion(`v${vod.id}`, vod.title, vod.thumbnail_url, vod.view_count, vod.duration);
+                    addSuggestion(vod.id, vod.title, vod.thumbnail_url, vod.view_count, vod.duration);
                 }
             });
         }
@@ -101,9 +103,14 @@
         updateVideo();
         if(e.target.name === "type" && e.target.checked) {
             searchVideos();
+            var embedType = document.querySelectorAll('input[name="embed"]');
+            for(var input of embedType) {
+                input.disabled = e.target.value == "video";
+            }
             if(e.target.value === "video") {
-                videoId.pattern = 'v[0-9]+';
-                videoId.placeholder = 'v123456789';
+                videoId.pattern = '[0-9]+';
+                videoId.placeholder = '123456789';
+                document.querySelector('input[name="embed"][value="static"]').checked = true;
             }
             else {
                 videoId.pattern = '[A-Za-z]+';
@@ -115,17 +122,22 @@
         searchVideos.channelId = info.channelId;
         searchVideos.clientId = info.clientId;
         searchVideos();
+        updateVideo();
     });
     twitch.configuration.onChanged(function() {
         if(twitch.configuration.broadcaster) {
             var config = JSON.parse(twitch.configuration.broadcaster.content);
             for(var k in config) {
                 if(config.hasOwnProperty(k)) {
-                    if(k == "type") {
-                        document.querySelector('input[name="type"][value="'+config[k]+'"]').checked = true;
-                        if(config[k] == 'clip') {
+                    if(k == "type" || k == "embed") {
+                        document.querySelector('input[name="'+k+'"][value="'+config[k]+'"]').checked = true;
+                        if(k == "type" && config[k] == 'clip') {
                             videoId.pattern = '[A-Za-z]+';
                             videoId.placeholder = 'ClipSlugName';
+                            var embedType = document.querySelectorAll('input[name="embed"]');
+                            for(var input of embedType) {
+                                input.disabled = false;
+                            }
                         }
                     }
                     else {
